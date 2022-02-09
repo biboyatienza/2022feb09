@@ -1,6 +1,7 @@
 import express, {Request, Response, NextFunction, Express} from 'express'
 import morgan from 'morgan'
 import creatHttpError from 'http-errors'
+import api from './routes/api.route'
 
 const createdBy = '-- 2022.Feb.09 EJS x TS'
 const app: Express = express()
@@ -12,6 +13,8 @@ app.use(morgan('dev'))
 app.get('/check', (req: Request, res: Response, next: NextFunction) => {
   res.send(`All OK! ${createdBy}`)
 })
+
+app.use('/api', api)
 
 // Error Handling
 app.use((req: Request, res: Response, next: NextFunction) => {
